@@ -67,7 +67,9 @@ const create_borrow = async (
       itemId,
     });
 
-    res.status(201).json(borrower);
+    res
+      .status(201)
+      .json({ message: `Item assigned to ${borrower.full_name} `, borrower });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

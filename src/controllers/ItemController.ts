@@ -11,7 +11,15 @@ export interface ExpandedRequest extends Request {
 const Items = Item_model(sequelizeConnection);
 
 const createItem = async (req: Request, res: Response): Promise<void> => {
-  const { name, title, description, categoryId, condition, status } = req.body;
+  const {
+    name,
+    title,
+    description,
+    categoryId,
+    condition,
+    status,
+    serial_number,
+  } = req.body;
   const files = req.files as Express.Multer.File[];
 
   if (!name || !title || !description) {
@@ -31,6 +39,7 @@ const createItem = async (req: Request, res: Response): Promise<void> => {
       description,
       condition,
       status,
+      serial_number,
       images: uploadedImages.images,
       categoryId,
     });
@@ -65,7 +74,15 @@ const deleteItem = async (req: Request, res: Response): Promise<void> => {
 
 const updateItem = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { name, title, description, categoryId } = req.body;
+  const {
+    name,
+    title,
+    description,
+    categoryId,
+    condition,
+    status,
+    serial_number,
+  } = req.body;
 
   try {
     const item = await Items.findByPk(id);
@@ -92,6 +109,9 @@ const updateItem = async (req: Request, res: Response): Promise<void> => {
       description: description ?? item.description,
       images: updatedImages,
       categoryId: categoryId ?? item.categoryId,
+      condition: condition ?? item.condition,
+      status: status ?? item.status,
+      serial_number: serial_number ?? item.serial_number,
     });
 
     res.status(200).json({ meaage: `${item.name} update` });

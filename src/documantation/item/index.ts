@@ -46,6 +46,11 @@ const createItem = {
               enum: ["new", "used", "good", "damaged"],
               example: "good",
             },
+            serial_number: {
+              type: "string",
+              description: "Serial number of the item",
+              example: "Was21f34L",
+            },
             images: {
               type: "array",
               items: {

@@ -11,6 +11,7 @@ interface ItemsAttributes {
   categoryId?: string;
   status?: string;
   condition?: string;
+  serial_number?: string;
 }
 
 export class Items extends Model<ItemsAttributes> implements ItemsAttributes {
@@ -22,6 +23,7 @@ export class Items extends Model<ItemsAttributes> implements ItemsAttributes {
   public name!: string;
   public status!: string;
   public condition!: string;
+  public serial_number!: string;
 
   public static associate(models: {
     Category: typeof Category;
@@ -65,6 +67,10 @@ const item_model = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
       },
       condition: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      serial_number: {
         allowNull: false,
         type: DataTypes.STRING,
       },
