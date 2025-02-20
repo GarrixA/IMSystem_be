@@ -1,13 +1,18 @@
 require("dotenv").config();
 
-process.env.DB_HOSTED_MODE == "local"
-  ? (dialect_option = {})
-  : (dialect_option = {
-      ssl: {
-        require: process.env.SSL,
-        rejectUnauthorized: false,
-      },
-    });
+let dialect_option = {};
+
+if (process.env.DB_HOSTED_MODE === "local") {
+  dialect_option = {};
+} else {
+  dialect_option = {
+    ssl: {
+      require: process.env.SSL === "true",
+      rejectUnauthorized: process.env.SSL === "false" ? false : true,
+    },
+  };
+}
+
 module.exports = {
   development: {
     url: process.env.DB_DEV_URL,
