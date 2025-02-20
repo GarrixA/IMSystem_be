@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.get(
   "/",
-  // athenticate.authenticateUser,
-  // athenticate.isAdmin,
+  athenticate.authenticateUser,
+  athenticate.isAdmin,
   auth.getUsers
 );
 router.get(
