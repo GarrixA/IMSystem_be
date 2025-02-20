@@ -26,8 +26,8 @@ router.get(
 
 router.post(
   "/users/:userId/roles",
-  // athenticate.authenticateUser,
-  // athenticate.isAdmin,
+  athenticate.authenticateUser,
+  athenticate.isAdmin,
   roleController.assignRole
 );
 
