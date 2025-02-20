@@ -22,7 +22,9 @@ const authenticateUser = (
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET) as JwtPayload;
+    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET, {
+      algorithms: ["HS256"],
+    }) as JwtPayload;
 
     req.user = decoded;
 
