@@ -9,9 +9,11 @@ const User = User_model(sequelizeConnection);
 const createRole = async (req: Request, res: Response): Promise<void> => {
   try {
     const { roleName } = req.body;
-    const newRole = await Role.create({ roleName });
+    const upperCaseRoleName = roleName.toUpperCase();
+    const newRole = await Role.create({ roleName: upperCaseRoleName });
+
     res.status(201).json({
-      message: `${roleName} role created successfully`,
+      message: `${upperCaseRoleName} role created successfully`,
       role: newRole,
     });
   } catch (error) {

@@ -25,12 +25,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", router);
-
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(docs));
 
 app.get("/api/v1", (_req: Request, res: Response) => {
   res.status(200).json({
-    message: "Welcome to Art's corner documentation",
+    message: "Welcome to IMSys documentation",
   });
 });
 app.get("/", (_req: Request, res: Response) => {
